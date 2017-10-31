@@ -1,10 +1,12 @@
 package com.sean.bmi;
 
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +26,16 @@ public class MainActivity extends AppCompatActivity {
         float height = Float.parseFloat(edHeight.getText().toString());
         float bmi = weight / (height * height);
         Log.d("MainActivity", "Your BMI : "+ bmi);
+//        Toast.makeText(this, "Your BMI is"+ bmi,Toast.LENGTH_LONG).show();
+        new AlertDialog.Builder(this) //顯示對話框
+                .setMessage("Your BMI is "+bmi)
+                .setTitle("BMI值")
+                .setPositiveButton("OK",null)
+                .show();
+
+
+
+
 
 
     }
