@@ -49,11 +49,20 @@ public class MainActivity extends AppCompatActivity {
         float bmi = weight / (height * height);
         Log.d("MainActivity", "Your BMI : "+ bmi);
 //        Toast.makeText(this, "Your BMI is"+ bmi,Toast.LENGTH_LONG).show();
-        new AlertDialog.Builder(this) //顯示對話框
-                .setMessage(getString(R.string.your_bmi_is)+bmi)
-                .setTitle(R.string.bmi_title)
-                .setPositiveButton(R.string.ok,null)
-                .show();
+
+        if (bmi<20){
+            new AlertDialog.Builder(this) //顯示對話框
+                    .setMessage(getString(R.string.your_bmi_is)+bmi+" 請多吃點!")
+                    .setTitle(R.string.bmi_title)
+                    .setPositiveButton(R.string.ok,null)
+                    .show();
+        }else{
+            new AlertDialog.Builder(this) //顯示對話框
+                    .setMessage(getString(R.string.your_bmi_is)+bmi)
+                    .setTitle(R.string.bmi_title)
+                    .setPositiveButton(R.string.ok,null)
+                    .show();
+        }
 
 
 
