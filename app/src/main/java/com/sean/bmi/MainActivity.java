@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     String s = new String("abc");
+
+
 //    View.OnClickListener listener = new View.OnClickListener() {
 //        @Override
 //        public void onClick(View view) {
@@ -36,36 +38,50 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
     public void bmi(View view){
 //        System.out.println("what???");  躲在logcat多行裡
         Log.d("MainActivity","testing bmi method");
-        EditText edWeight = (EditText) findViewById(R.id.ed_weight);
-        EditText edHeight = (EditText) findViewById(R.id.ed_height);
+
+
 //        String s = edWeight.getText().toString();  原始長相
 //        float weight = Float.parseFloat(s);
-        float weight = Float.parseFloat(edWeight.getText().toString());
+
+        EditText edHeight = (EditText) findViewById(R.id.ed_height);
         float height = Float.parseFloat(edHeight.getText().toString());
-        float bmi = weight / (height * height);
-        Log.d("MainActivity", "Your BMI : "+ bmi);
+        if(height>3){
+            new AlertDialog.Builder(this)
+                    .setMessage(R.string.height_check)
+                    .setTitle(R.string.Warn)
+                    .setPositiveButton(R.string.ok,null)
+                    .show();
+
+        }
+        EditText edWeight = (EditText) findViewById(R.id.ed_weight);
+        float weight = Float.parseFloat(edWeight.getText().toString());
+         if(height<3) {
+              float bmi = weight / (height * height);
+             Log.d("MainActivity", "Your BMI : " + bmi);
 //        Toast.makeText(this, "Your BMI is"+ bmi,Toast.LENGTH_LONG).show();
 
-        if (bmi<20){
-            new AlertDialog.Builder(this) //顯示對話框
-                    .setMessage(getString(R.string.your_bmi_is)+bmi+" 請多吃點!")
-                    .setTitle(R.string.bmi_title)
-                    .setPositiveButton(R.string.ok,null)
-                    .show();
-        }else{
-            new AlertDialog.Builder(this) //顯示對話框
-                    .setMessage(getString(R.string.your_bmi_is)+bmi)
-                    .setTitle(R.string.bmi_title)
-                    .setPositiveButton(R.string.ok,null)
-                    .show();
-        }
+    if (bmi < 20) {
+        new AlertDialog.Builder(this) //顯示對話框
+                .setMessage(getString(R.string.your_bmi_is) + bmi + getString(R.string.eat_more))
+                .setTitle(R.string.bmi_title)
+                .setPositiveButton(R.string.ok, null)
+                .show();
+    } else {
+        new AlertDialog.Builder(this) //顯示對話框
+                .setMessage(getString(R.string.your_bmi_is) + bmi)
+                .setTitle(R.string.bmi_title)
+                .setPositiveButton(R.string.ok, null)
+                .show();
+    }
 
 
-
+}
 
 
 
